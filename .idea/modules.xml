@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Calendar-Expandable-WeekView.iml" filepath="$PROJECT_DIR$/.idea/Calendar-Expandable-WeekView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" filepath="$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" group="CalendarView-ExpandableWeekView" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="CalendarView-ExpandableWeekView/app" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" group="CalendarView-ExpandableWeekView/library" />
+    </modules>
+  </component>
+</project>

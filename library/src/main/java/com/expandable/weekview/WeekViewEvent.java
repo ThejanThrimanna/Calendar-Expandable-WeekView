@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.expandable.weekview.WeekViewUtil.*;
+import static com.expandable.weekview.WeekViewUtil.isSameDay;
 
 /**
  * Created by Thejan_Thrimanna on 4/18/2020.
@@ -15,6 +15,11 @@ public class WeekViewEvent {
     private Calendar mEndTime;
     private String mName;
     private String mLocation;
+    private String mPin = "";
+    private String mSupplier = "";
+    private String mReference = "";
+    private String mBookedBy = "";
+    private String mAdditionalInfo = "";
     private int mColor;
     private boolean mAllDay;
 
@@ -153,6 +158,46 @@ public class WeekViewEvent {
 
     public void setId(long id) {
         this.mId = id;
+    }
+
+    public String getmPin() {
+        return mPin;
+    }
+
+    public void setmPin(String mPin) {
+        this.mPin = mPin;
+    }
+
+    public String getmSupplier() {
+        return mSupplier;
+    }
+
+    public void setmSupplier(String mSupplier) {
+        this.mSupplier = mSupplier;
+    }
+
+    public String getmReference() {
+        return mReference;
+    }
+
+    public void setmReference(String mReference) {
+        this.mReference = mReference;
+    }
+
+    public String getmBookedBy() {
+        return mBookedBy;
+    }
+
+    public void setmBookedBy(String mBookedBy) {
+        this.mBookedBy = mBookedBy;
+    }
+
+    public String getmAdditionalInfo() {
+        return mAdditionalInfo;
+    }
+
+    public void setmAdditionalInfo(String mAdditionalInfo) {
+        this.mAdditionalInfo = mAdditionalInfo;
     }
 
     @Override
