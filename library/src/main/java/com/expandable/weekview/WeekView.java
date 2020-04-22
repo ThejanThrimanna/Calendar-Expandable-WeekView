@@ -105,7 +105,7 @@ public class WeekView extends View {
     private int mNewHourHeight = -1;
     private int mMinHourHeight = 0; //no minimum specified (will be dynamic, based on screen)
     private int mEffectiveMinHourHeight = mMinHourHeight; //compensates for the fact that you can't keep zooming out.
-    private int mMaxHourHeight = 250;
+    private int mMaxHourHeight = 400;
     private int mColumnGap = 10;
     private int mFirstDayOfWeek = Calendar.MONDAY;
     private int mTextSize = 12;
