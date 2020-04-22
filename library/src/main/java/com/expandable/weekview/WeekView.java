@@ -480,7 +480,6 @@ public class WeekView extends View {
     private void initTextTimeWidth() {
         mTimeTextWidth = 0;
         for (int i = 0; i < 24; i++) {
-        for (int i = 0; i < 24; i++) {
             // Measure time string and get max width.
             String time = getDateTimeInterpreter().interpretTime(i);
             if (time == null)
@@ -882,7 +881,7 @@ public class WeekView extends View {
             switch (order.get(x).getId()) {
                 case Constants.PIN: {
                     String sourceString = event.getmPin();
-                    if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
+                    if (!sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -893,7 +892,7 @@ public class WeekView extends View {
                 }
                 case Constants.SUPPLIER: {
                     String sourceString = event.getmSupplier();
-                    if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
+                    if (!sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -905,7 +904,7 @@ public class WeekView extends View {
 
                 case Constants.REFERENCE: {
                     String sourceString = event.getmReference();
-                    if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
+                    if (!sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -917,7 +916,7 @@ public class WeekView extends View {
 
                 case Constants.BOOKED_BY: {
                     String sourceString = event.getmBookedBy();
-                    if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
+                    if (!sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -929,7 +928,7 @@ public class WeekView extends View {
 
                 case Constants.ADDITIONAL_INFO: {
                     String sourceString = event.getmAdditionalInfo();
-                    if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
+                    if (!sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -1464,10 +1463,10 @@ public class WeekView extends View {
      * once.
      * </p>
      *
-     * @param firstDayOfWeek The supported values are {@link java.util.Calendar#SUNDAY},
-     *                       {@link java.util.Calendar#MONDAY}, {@link java.util.Calendar#TUESDAY},
-     *                       {@link java.util.Calendar#WEDNESDAY}, {@link java.util.Calendar#THURSDAY},
-     *                       {@link java.util.Calendar#FRIDAY}.
+     * @param firstDayOfWeek The supported values are {@link Calendar#SUNDAY},
+     *                       {@link Calendar#MONDAY}, {@link Calendar#TUESDAY},
+     *                       {@link Calendar#WEDNESDAY}, {@link Calendar#THURSDAY},
+     *                       {@link Calendar#FRIDAY}.
      */
     public void setFirstDayOfWeek(int firstDayOfWeek) {
         mFirstDayOfWeek = firstDayOfWeek;
