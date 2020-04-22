@@ -480,6 +480,7 @@ public class WeekView extends View {
     private void initTextTimeWidth() {
         mTimeTextWidth = 0;
         for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 24; i++) {
             // Measure time string and get max width.
             String time = getDateTimeInterpreter().interpretTime(i);
             if (time == null)
@@ -878,7 +879,7 @@ public class WeekView extends View {
         SpannableStringBuilder bob = new SpannableStringBuilder();
 
         for (int x = 0; x < order.size(); x++) {
-            switch (order.get(x).getText()) {
+            switch (order.get(x).getId()) {
                 case Constants.PIN: {
                     String sourceString = event.getmPin();
                     if (sourceString != null && !sourceString.isEmpty() && order.get(x).getShow()) {
