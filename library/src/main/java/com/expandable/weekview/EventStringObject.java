@@ -6,6 +6,7 @@ package com.expandable.weekview;
 public class EventStringObject {
     private String text;
     private Boolean isBold;
+    private Boolean isShow;
 
     public String getText() {
         return text;
@@ -21,5 +22,13 @@ public class EventStringObject {
 
     public void setBold(Boolean bold) {
         isBold = bold;
+    }
+
+    public Boolean getShow() {
+        return isShow;
+    }
+
+    public void setShow(Boolean show) {
+        isShow = show;
     }
 }
