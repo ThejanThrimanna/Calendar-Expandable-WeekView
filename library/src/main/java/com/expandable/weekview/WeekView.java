@@ -881,7 +881,7 @@ public class WeekView extends View {
             switch (order.get(x).getId()) {
                 case Constants.PIN: {
                     String sourceString = event.getmPin();
-                    if (!sourceString.isEmpty()) {
+                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -892,7 +892,7 @@ public class WeekView extends View {
                 }
                 case Constants.SUPPLIER: {
                     String sourceString = event.getmSupplier();
-                    if (!sourceString.isEmpty()) {
+                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -904,7 +904,7 @@ public class WeekView extends View {
 
                 case Constants.REFERENCE: {
                     String sourceString = event.getmReference();
-                    if (!sourceString.isEmpty()) {
+                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -916,7 +916,7 @@ public class WeekView extends View {
 
                 case Constants.BOOKED_BY: {
                     String sourceString = event.getmBookedBy();
-                    if (!sourceString.isEmpty()) {
+                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
@@ -928,7 +928,7 @@ public class WeekView extends View {
 
                 case Constants.ADDITIONAL_INFO: {
                     String sourceString = event.getmAdditionalInfo();
-                    if (!sourceString.isEmpty()) {
+                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
                         if (order.get(x).getBold()) {
                             sourceString = "<b>" + sourceString + "</b> ";
                         }
