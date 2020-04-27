@@ -105,7 +105,7 @@ public class WeekView extends View {
     private int mNewHourHeight = -1;
     private int mMinHourHeight = 0; //no minimum specified (will be dynamic, based on screen)
     private int mEffectiveMinHourHeight = mMinHourHeight; //compensates for the fact that you can't keep zooming out.
-    private int mMaxHourHeight = 400;
+    private int mMaxHourHeight = 350;
     private int mColumnGap = 10;
     private int mFirstDayOfWeek = Calendar.MONDAY;
     private int mTextSize = 12;
@@ -355,6 +355,13 @@ public class WeekView extends View {
             mVerticalFlingEnabled = a.getBoolean(R.styleable.WeekView_verticalFlingEnabled, mVerticalFlingEnabled);
             mAllDayEventHeight = a.getDimensionPixelSize(R.styleable.WeekView_allDayEventHeight, mAllDayEventHeight);
             mScrollDuration = a.getInt(R.styleable.WeekView_scrollDuration, mScrollDuration);
+
+            EventStringObject ev = new EventStringObject();
+            ev.setId(Constants.PIN);
+            ev.setText(Constants.PIN);
+            ev.setShow(true);
+            ev.setBold(true);
+            order.add(ev);
         } finally {
             a.recycle();
         }
@@ -876,69 +883,74 @@ public class WeekView extends View {
 
         // Prepare the name of the event.
         SpannableStringBuilder bob = new SpannableStringBuilder();
-
-        for (int x = 0; x < order.size(); x++) {
-            switch (order.get(x).getId()) {
-                case Constants.PIN: {
-                    String sourceString = event.getmPin();
-                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                        if (order.get(x).getBold()) {
-                            sourceString = "<b>" + sourceString + "</b> ";
+        if (event.ismAllDay()) {
+            String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
+            String sourceString = "<big><b>" + st + "</b></big>";
+            bob.append(Html.fromHtml(sourceString));
+        } else {
+            for (int x = 0; x < order.size(); x++) {
+                switch (order.get(x).getId()) {
+                    case Constants.PIN: {
+                        String sourceString = event.getmPin();
+                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
+                            if (order.get(x).getBold()) {
+                                sourceString = "<b>" + sourceString + "</b> ";
+                            }
+                            bob.append(Html.fromHtml(sourceString));
+                            bob.append("\n");
                         }
-                        bob.append(Html.fromHtml(sourceString));
-                        bob.append("\n");
+                        break;
                     }
-                    break;
-                }
-                case Constants.SUPPLIER: {
-                    String sourceString = event.getmSupplier();
-                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                        if (order.get(x).getBold()) {
-                            sourceString = "<b>" + sourceString + "</b> ";
+                    case Constants.SUPPLIER: {
+                        String sourceString = event.getmSupplier();
+                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
+                            if (order.get(x).getBold()) {
+                                sourceString = "<b>" + sourceString + "</b> ";
+                            }
+                            bob.append(Html.fromHtml(sourceString));
+                            bob.append("\n");
                         }
-                        bob.append(Html.fromHtml(sourceString));
-                        bob.append("\n");
+                        break;
                     }
-                    break;
-                }
 
-                case Constants.REFERENCE: {
-                    String sourceString = event.getmReference();
-                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                        if (order.get(x).getBold()) {
-                            sourceString = "<b>" + sourceString + "</b> ";
+                    case Constants.REFERENCE: {
+                        String sourceString = event.getmReference();
+                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
+                            if (order.get(x).getBold()) {
+                                sourceString = "<b>" + sourceString + "</b> ";
+                            }
+                            bob.append(Html.fromHtml(sourceString));
+                            bob.append("\n");
                         }
-                        bob.append(Html.fromHtml(sourceString));
-                        bob.append("\n");
+                        break;
                     }
-                    break;
-                }
 
-                case Constants.BOOKED_BY: {
-                    String sourceString = event.getmBookedBy();
-                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                        if (order.get(x).getBold()) {
-                            sourceString = "<b>" + sourceString + "</b> ";
+                    case Constants.BOOKED_BY: {
+                        String sourceString = event.getmBookedBy();
+                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
+                            if (order.get(x).getBold()) {
+                                sourceString = "<b>" + sourceString + "</b> ";
+                            }
+                            bob.append(Html.fromHtml(sourceString));
+                            bob.append("\n");
                         }
-                        bob.append(Html.fromHtml(sourceString));
-                        bob.append("\n");
+                        break;
                     }
-                    break;
-                }
 
-                case Constants.ADDITIONAL_INFO: {
-                    String sourceString = event.getmAdditionalInfo();
-                    if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                        if (order.get(x).getBold()) {
-                            sourceString = "<b>" + sourceString + "</b> ";
+                    case Constants.ADDITIONAL_INFO: {
+                        String sourceString = event.getmAdditionalInfo();
+                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
+                            if (order.get(x).getBold()) {
+                                sourceString = "<b>" + sourceString + "</b> ";
+                            }
+                            bob.append(Html.fromHtml(sourceString));
+                            bob.append("\n");
                         }
-                        bob.append(Html.fromHtml(sourceString));
-                        bob.append("\n");
+                        break;
                     }
-                    break;
+
+
                 }
-
-
             }
         }
 

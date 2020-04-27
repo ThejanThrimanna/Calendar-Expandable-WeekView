@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.expandable.weekview.WeekViewUtil.isSameDay;
+import static com.expandable.weekview.WeekViewUtil.*;
 
 /**
  * Created by Thejan_Thrimanna on 4/18/2020.
@@ -20,41 +20,44 @@ public class WeekViewEvent {
     private String mReference = "";
     private String mBookedBy = "";
     private String mAdditionalInfo = "";
+    private String AllDayValueOne = "";
+    private String AllDayValueTwo = "";
     private int mColor;
     private boolean mAllDay;
 
-    public WeekViewEvent(){
+    public WeekViewEvent() {
 
     }
 
     /**
      * Initializes the event for week view.
-     * @param id The id of the event.
-     * @param name Name of the event.
-     * @param startYear Year when the event starts.
-     * @param startMonth Month when the event starts.
-     * @param startDay Day when the event starts.
-     * @param startHour Hour (in 24-hour format) when the event starts.
+     *
+     * @param id          The id of the event.
+     * @param name        Name of the event.
+     * @param startYear   Year when the event starts.
+     * @param startMonth  Month when the event starts.
+     * @param startDay    Day when the event starts.
+     * @param startHour   Hour (in 24-hour format) when the event starts.
      * @param startMinute Minute when the event starts.
-     * @param endYear Year when the event ends.
-     * @param endMonth Month when the event ends.
-     * @param endDay Day when the event ends.
-     * @param endHour Hour (in 24-hour format) when the event ends.
-     * @param endMinute Minute when the event ends.
+     * @param endYear     Year when the event ends.
+     * @param endMonth    Month when the event ends.
+     * @param endDay      Day when the event ends.
+     * @param endHour     Hour (in 24-hour format) when the event ends.
+     * @param endMinute   Minute when the event ends.
      */
     public WeekViewEvent(long id, String name, int startYear, int startMonth, int startDay, int startHour, int startMinute, int endYear, int endMonth, int endDay, int endHour, int endMinute) {
         this.mId = id;
 
         this.mStartTime = Calendar.getInstance();
         this.mStartTime.set(Calendar.YEAR, startYear);
-        this.mStartTime.set(Calendar.MONTH, startMonth-1);
+        this.mStartTime.set(Calendar.MONTH, startMonth - 1);
         this.mStartTime.set(Calendar.DAY_OF_MONTH, startDay);
         this.mStartTime.set(Calendar.HOUR_OF_DAY, startHour);
         this.mStartTime.set(Calendar.MINUTE, startMinute);
 
         this.mEndTime = Calendar.getInstance();
         this.mEndTime.set(Calendar.YEAR, endYear);
-        this.mEndTime.set(Calendar.MONTH, endMonth-1);
+        this.mEndTime.set(Calendar.MONTH, endMonth - 1);
         this.mEndTime.set(Calendar.DAY_OF_MONTH, endDay);
         this.mEndTime.set(Calendar.HOUR_OF_DAY, endHour);
         this.mEndTime.set(Calendar.MINUTE, endMinute);
@@ -64,12 +67,13 @@ public class WeekViewEvent {
 
     /**
      * Initializes the event for week view.
-     * @param id The id of the event.
-     * @param name Name of the event.
-     * @param location The location of the event.
+     *
+     * @param id        The id of the event.
+     * @param name      Name of the event.
+     * @param location  The location of the event.
      * @param startTime The time when the event starts.
-     * @param endTime The time when the event ends.
-     * @param allDay Is the event an all day event.
+     * @param endTime   The time when the event ends.
+     * @param allDay    Is the event an all day event.
      */
     public WeekViewEvent(long id, String name, String location, Calendar startTime, Calendar endTime, boolean allDay) {
         this.mId = id;
@@ -82,11 +86,12 @@ public class WeekViewEvent {
 
     /**
      * Initializes the event for week view.
-     * @param id The id of the event.
-     * @param name Name of the event.
-     * @param location The location of the event.
+     *
+     * @param id        The id of the event.
+     * @param name      Name of the event.
+     * @param location  The location of the event.
      * @param startTime The time when the event starts.
-     * @param endTime The time when the event ends.
+     * @param endTime   The time when the event ends.
      */
     public WeekViewEvent(long id, String name, String location, Calendar startTime, Calendar endTime) {
         this(id, name, location, startTime, endTime, false);
@@ -94,15 +99,19 @@ public class WeekViewEvent {
 
     /**
      * Initializes the event for week view.
-     * @param id The id of the event.
-     * @param name Name of the event.
+     *
+     * @param id        The id of the event.
+     * @param name      Name of the event.
      * @param startTime The time when the event starts.
-     * @param endTime The time when the event ends.
+     * @param endTime   The time when the event ends.
      */
     public WeekViewEvent(long id, String name, Calendar startTime, Calendar endTime) {
         this(id, name, null, startTime, endTime);
     }
 
+    public WeekViewEvent(long id, String name, Calendar startTime, Calendar endTime, Boolean mAllDay) {
+        this(id, name, null, startTime, endTime, mAllDay);
+    }
 
     public Calendar getStartTime() {
         return mStartTime;
@@ -196,8 +205,33 @@ public class WeekViewEvent {
         return mAdditionalInfo;
     }
 
+
+    public String getAllDayValueOne() {
+        return AllDayValueOne;
+    }
+
+    public void setAllDayValueOne(String allDayValueOne) {
+        AllDayValueOne = allDayValueOne;
+    }
+
+    public String getAllDayValueTwo() {
+        return AllDayValueTwo;
+    }
+
+    public void setAllDayValueTwo(String allDayValueTwo) {
+        AllDayValueTwo = allDayValueTwo;
+    }
+
     public void setmAdditionalInfo(String mAdditionalInfo) {
         this.mAdditionalInfo = mAdditionalInfo;
+    }
+
+    public boolean ismAllDay() {
+        return mAllDay;
+    }
+
+    public void setmAllDay(boolean mAllDay) {
+        this.mAllDay = mAllDay;
     }
 
     @Override
@@ -216,7 +250,7 @@ public class WeekViewEvent {
         return (int) (mId ^ (mId >>> 32));
     }
 
-    public List<WeekViewEvent> splitWeekViewEvents(){
+    public List<WeekViewEvent> splitWeekViewEvents() {
         //This function splits the WeekViewEvent in WeekViewEvents by day
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
         // The first millisecond of the next day is still the same day. (no need to split events for this).
@@ -255,8 +289,7 @@ public class WeekViewEvent {
             WeekViewEvent event2 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), startTime, this.getEndTime(), this.isAllDay());
             event2.setColor(this.getColor());
             events.add(event2);
-        }
-        else{
+        } else {
             events.add(this);
         }
 
