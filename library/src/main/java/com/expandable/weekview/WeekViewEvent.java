@@ -24,6 +24,7 @@ public class WeekViewEvent {
     private String AllDayValueTwo = "";
     private int mColor;
     private boolean mAllDay;
+    private boolean isImaageAvailable;
 
     public WeekViewEvent() {
 
@@ -232,6 +233,14 @@ public class WeekViewEvent {
 
     public void setmAllDay(boolean mAllDay) {
         this.mAllDay = mAllDay;
+    }
+
+    public boolean isImaageAvailable() {
+        return isImaageAvailable;
+    }
+
+    public void setImaageAvailable(boolean imaageAvailable) {
+        isImaageAvailable = imaageAvailable;
     }
 
     @Override

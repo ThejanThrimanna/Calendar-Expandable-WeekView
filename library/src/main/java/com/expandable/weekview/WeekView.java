@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.Layout;
@@ -18,6 +19,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -884,9 +886,11 @@ public class WeekView extends View {
         // Prepare the name of the event.
         SpannableStringBuilder bob = new SpannableStringBuilder();
         if (event.ismAllDay()) {
-            String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
-            String sourceString = "<big><b>" + st + "</b></big>";
+            String st = "<b>" + event.getAllDayValueOne() + "</b>" + "/" + event.getAllDayValueTwo();
+            String sourceString = st + "&nbsp";
             bob.append(Html.fromHtml(sourceString));
+            if (event.isImaageAvailable())
+                bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_image), 0);
         } else {
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
@@ -951,7 +955,13 @@ public class WeekView extends View {
 
 
                 }
+
+
             }
+            bob.append(Html.fromHtml("<br>"));
+            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_crane_lb), 0);
+            bob.append(" ");
+            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_truck_lb), 0);
         }
 
 
