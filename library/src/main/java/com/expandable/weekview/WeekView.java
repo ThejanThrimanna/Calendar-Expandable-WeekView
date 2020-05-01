@@ -89,6 +89,7 @@ public class WeekView extends View {
     private List<? extends WeekViewEvent> mPreviousPeriodEvents;
     private List<? extends WeekViewEvent> mCurrentPeriodEvents;
     private List<? extends WeekViewEvent> mNextPeriodEvents;
+    private ArrayList<WeekViewEvent> AllEvents = new ArrayList();
     private TextPaint mEventTextPaint;
     private Paint mHeaderColumnBackgroundPaint;
     private int mFetchedPeriod = -1; // the middle period the calendar has fetched.
@@ -1135,9 +1136,8 @@ public class WeekView extends View {
             return;
         List<WeekViewEvent> splitedEvents = event.splitWeekViewEvents();
         for (WeekViewEvent splitedEvent : splitedEvents) {
-            EventRect ev = new EventRect(splitedEvent, event, null);
-            if (!mEventRects.contains(ev))
-                mEventRects.add(ev);
+            if (mEventRects.contains(event))
+                mEventRects.add(new EventRect(splitedEvent, event, null));
         }
     }
 
@@ -1149,7 +1149,10 @@ public class WeekView extends View {
     private void sortAndCacheEvents(List<? extends WeekViewEvent> events) {
         sortEvents(events);
         for (WeekViewEvent event : events) {
-            cacheEvent(event);
+            if (!AllEvents.contains(event)) {
+                cacheEvent(event);
+                AllEvents.add(event);
+            }
         }
     }
 
