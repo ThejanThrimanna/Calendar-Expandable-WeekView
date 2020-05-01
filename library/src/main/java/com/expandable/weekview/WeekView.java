@@ -1314,8 +1314,10 @@ public class WeekView extends View {
         order = orderList;
     }
 
-    public void setCurrentEvents(ArrayList<WeekViewEvent> list) {
-        mCurrentPeriodEvents = list;
+    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current,ArrayList<WeekViewEvent> next) {
+        mCurrentPeriodEvents = current;
+        mPreviousPeriodEvents = previous;
+        mNextPeriodEvents = next;
     }
 
     public EventClickListener getEventClickListener() {
