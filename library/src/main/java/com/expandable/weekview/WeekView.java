@@ -1135,7 +1135,9 @@ public class WeekView extends View {
             return;
         List<WeekViewEvent> splitedEvents = event.splitWeekViewEvents();
         for (WeekViewEvent splitedEvent : splitedEvents) {
-            mEventRects.add(new EventRect(splitedEvent, event, null));
+            EventRect ev = new EventRect(splitedEvent, event, null);
+            if (!mEventRects.contains(ev))
+                mEventRects.add(ev);
         }
     }
 
@@ -1146,9 +1148,9 @@ public class WeekView extends View {
      */
     private void sortAndCacheEvents(List<? extends WeekViewEvent> events) {
         sortEvents(events);
-        /*for (WeekViewEvent event : events) {
+        for (WeekViewEvent event : events) {
             cacheEvent(event);
-        }*/
+        }
     }
 
     /**
@@ -1314,7 +1316,7 @@ public class WeekView extends View {
         order = orderList;
     }
 
-    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current,ArrayList<WeekViewEvent> next) {
+    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current, ArrayList<WeekViewEvent> next) {
         mCurrentPeriodEvents = current;
         mPreviousPeriodEvents = previous;
         mNextPeriodEvents = next;
