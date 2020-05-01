@@ -1191,9 +1191,17 @@ public class WeekView extends View {
             for (List<EventRect> collisionGroup : collisionGroups) {
                 for (EventRect groupEvent : collisionGroup) {
                     if (isEventsCollide(groupEvent.event, eventRect.event) && groupEvent.event.isAllDay() == eventRect.event.isAllDay()) {
-                        collisionGroup.add(eventRect);
-                        isPlaced = true;
-                        break outerLoop;
+                        Boolean isj = false;
+                        for (EventRect cg : collisionGroup) {
+                            if (cg.event.getId() == eventRect.event.getId()) {
+                                isj = true;
+                            }
+                        }
+                        if (!isj) {
+                            collisionGroup.add(eventRect);
+                            isPlaced = true;
+                            break outerLoop;
+                        }
                     }
                 }
             }
