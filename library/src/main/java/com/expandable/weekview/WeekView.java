@@ -1146,9 +1146,9 @@ public class WeekView extends View {
      */
     private void sortAndCacheEvents(List<? extends WeekViewEvent> events) {
         sortEvents(events);
-        for (WeekViewEvent event : events) {
+        /*for (WeekViewEvent event : events) {
             cacheEvent(event);
-        }
+        }*/
     }
 
     /**
