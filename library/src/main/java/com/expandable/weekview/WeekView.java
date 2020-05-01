@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.Layout;
@@ -89,7 +88,6 @@ public class WeekView extends View {
     private List<? extends WeekViewEvent> mPreviousPeriodEvents;
     private List<? extends WeekViewEvent> mCurrentPeriodEvents;
     private List<? extends WeekViewEvent> mNextPeriodEvents;
-    private ArrayList<WeekViewEvent> AllEvents = new ArrayList();
     private TextPaint mEventTextPaint;
     private Paint mHeaderColumnBackgroundPaint;
     private int mFetchedPeriod = -1; // the middle period the calendar has fetched.
@@ -1136,8 +1134,7 @@ public class WeekView extends View {
             return;
         List<WeekViewEvent> splitedEvents = event.splitWeekViewEvents();
         for (WeekViewEvent splitedEvent : splitedEvents) {
-            if (mEventRects.contains(event))
-                mEventRects.add(new EventRect(splitedEvent, event, null));
+            mEventRects.add(new EventRect(splitedEvent, event, null));
         }
     }
 
@@ -1191,17 +1188,9 @@ public class WeekView extends View {
             for (List<EventRect> collisionGroup : collisionGroups) {
                 for (EventRect groupEvent : collisionGroup) {
                     if (isEventsCollide(groupEvent.event, eventRect.event) && groupEvent.event.isAllDay() == eventRect.event.isAllDay()) {
-                        Boolean isj = false;
-                        for (EventRect cg : collisionGroup) {
-                            if (cg.event.getId() == eventRect.event.getId()) {
-                                isj = true;
-                            }
-                        }
-                        if (!isj) {
-                            collisionGroup.add(eventRect);
-                            isPlaced = true;
-                            break outerLoop;
-                        }
+                        collisionGroup.add(eventRect);
+                        isPlaced = true;
+                        break outerLoop;
                     }
                 }
             }
@@ -1324,7 +1313,7 @@ public class WeekView extends View {
         order = orderList;
     }
 
-    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current, ArrayList<WeekViewEvent> next) {
+    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current,ArrayList<WeekViewEvent> next) {
         mCurrentPeriodEvents = current;
         mPreviousPeriodEvents = previous;
         mNextPeriodEvents = next;
