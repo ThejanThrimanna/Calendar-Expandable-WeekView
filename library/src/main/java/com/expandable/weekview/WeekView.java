@@ -1188,9 +1188,17 @@ public class WeekView extends View {
             for (List<EventRect> collisionGroup : collisionGroups) {
                 for (EventRect groupEvent : collisionGroup) {
                     if (isEventsCollide(groupEvent.event, eventRect.event) && groupEvent.event.isAllDay() == eventRect.event.isAllDay()) {
-                        collisionGroup.add(eventRect);
-                        isPlaced = true;
-                        break outerLoop;
+                        Boolean isAdded = false;
+                        for (EventRect evs : collisionGroup) {
+                            if(evs.event.getId() == eventRect.event.getId()){
+                                isAdded = true;
+                            }
+                        }
+                        if(!isAdded) {
+                            collisionGroup.add(eventRect);
+                            isPlaced = true;
+                            break outerLoop;
+                        }
                     }
                 }
             }
@@ -1313,7 +1321,7 @@ public class WeekView extends View {
         order = orderList;
     }
 
-    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current,ArrayList<WeekViewEvent> next) {
+    public void setCurrentEvents(ArrayList<WeekViewEvent> previous, ArrayList<WeekViewEvent> current, ArrayList<WeekViewEvent> next) {
         mCurrentPeriodEvents = current;
         mPreviousPeriodEvents = previous;
         mNextPeriodEvents = next;
