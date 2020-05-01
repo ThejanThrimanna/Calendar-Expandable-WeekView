@@ -1327,6 +1327,10 @@ public class WeekView extends View {
         mNextPeriodEvents = next;
     }
 
+    public void clearCache(){
+        mEventRects.clear();
+    }
+
     public EventClickListener getEventClickListener() {
         return mEventClickListener;
     }
