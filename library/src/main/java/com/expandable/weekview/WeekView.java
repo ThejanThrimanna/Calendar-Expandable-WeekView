@@ -1136,8 +1136,7 @@ public class WeekView extends View {
             return;
         List<WeekViewEvent> splitedEvents = event.splitWeekViewEvents();
         for (WeekViewEvent splitedEvent : splitedEvents) {
-            if (mEventRects.contains(event))
-                mEventRects.add(new EventRect(splitedEvent, event, null));
+            mEventRects.add(new EventRect(splitedEvent, event, null));
         }
     }
 
@@ -1155,7 +1154,7 @@ public class WeekView extends View {
                     isEvAvailable = true;
                 }
             }
-            if(!isEvAvailable) {
+            if (!isEvAvailable) {
                 cacheEvent(event);
                 AllEvents.add(event);
             }
