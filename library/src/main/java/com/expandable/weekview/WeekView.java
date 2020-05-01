@@ -1149,10 +1149,17 @@ public class WeekView extends View {
     private void sortAndCacheEvents(List<? extends WeekViewEvent> events) {
         sortEvents(events);
         for (WeekViewEvent event : events) {
-            if (!AllEvents.contains(event)) {
+            Boolean isEvAvailable = false;
+            for (WeekViewEvent allEV : AllEvents) {
+                if (allEV.getId() == event.getId()) {
+                    isEvAvailable = true;
+                }
+            }
+            if(!isEvAvailable) {
                 cacheEvent(event);
                 AllEvents.add(event);
             }
+
         }
     }
 
