@@ -25,6 +25,7 @@ public class WeekViewEvent {
     private int mColor;
     private boolean mAllDay;
     private boolean isImaageAvailable;
+    private List<Object> objectList;
 
     public WeekViewEvent() {
 
@@ -241,6 +242,14 @@ public class WeekViewEvent {
 
     public void setImaageAvailable(boolean imaageAvailable) {
         isImaageAvailable = imaageAvailable;
+    }
+
+    public List<Object> getObjectList() {
+        return objectList;
+    }
+
+    public void setObjectList(List<Object> objectList) {
+        this.objectList = objectList;
     }
 
     @Override
