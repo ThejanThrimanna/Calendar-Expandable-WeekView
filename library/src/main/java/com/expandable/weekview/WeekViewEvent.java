@@ -26,6 +26,7 @@ public class WeekViewEvent {
     private boolean mAllDay;
     private boolean isImaageAvailable;
     private List<Object> objectList;
+    private List<String> resources;
 
     public WeekViewEvent() {
 
@@ -250,6 +251,14 @@ public class WeekViewEvent {
 
     public void setObjectList(List<Object> objectList) {
         this.objectList = objectList;
+    }
+
+    public List<String> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<String> resources) {
+        this.resources = resources;
     }
 
     @Override

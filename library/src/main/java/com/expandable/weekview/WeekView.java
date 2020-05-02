@@ -951,16 +951,39 @@ public class WeekView extends View {
                         }
                         break;
                     }
-
+                }
+            }
+            String st = "<b>" + event.getAllDayValueOne() + "</b>" + "/" + event.getAllDayValueTwo();
+            String sourceString = st + "&nbsp";
+            bob.append(Html.fromHtml(sourceString));
+            if (event.getResources() != null && !event.getResources().isEmpty()) {
+                bob.append(Html.fromHtml("<br>"));
+                for (String res : event.getResources()) {
+                    switch (res) {
+                        case "TOOLS":
+                            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_tools_lb), 0);
+                            bob.append("  ");
+                            break;
+                        case "MANPOWER":
+                            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_people_lb), 0);
+                            bob.append("  ");
+                            break;
+                        case "TRUCK":
+                            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_truck_lb), 0);
+                            bob.append("  ");
+                            break;
+                        case "CRANE":
+                            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_crane_lb), 0);
+                            bob.append("  ");
+                            break;
+                        case "FORKLIFT":
+                            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_fork_lb), 0);
+                            bob.append("  ");
+                            break;
+                    }
 
                 }
-
-
             }
-            bob.append(Html.fromHtml("<br>"));
-            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_crane_lb), 0);
-            bob.append(" ");
-            bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_truck_lb), 0);
         }
 
 
