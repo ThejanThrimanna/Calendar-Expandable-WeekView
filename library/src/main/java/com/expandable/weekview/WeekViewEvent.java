@@ -310,7 +310,8 @@ public class WeekViewEvent {
             endTime = (Calendar) this.getStartTime().clone();
             endTime.set(Calendar.HOUR_OF_DAY, 23);
             endTime.set(Calendar.MINUTE, 59);
-            WeekViewEvent event1 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(), this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(), this.isAllDay());
+//            WeekViewEvent event1 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.isAllDay());
+            WeekViewEvent event1 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(),this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(),this.isAllDay());
             event1.setColor(this.getColor());
             events.add(event1);
 
@@ -324,7 +325,8 @@ public class WeekViewEvent {
                 Calendar endOfOverDay = (Calendar) overDay.clone();
                 endOfOverDay.set(Calendar.HOUR_OF_DAY, 23);
                 endOfOverDay.set(Calendar.MINUTE, 59);
-                WeekViewEvent eventMore = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(), this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(), this.isAllDay());
+//                WeekViewEvent eventMore = new WeekViewEvent(this.getId(), this.getName(), null, overDay, endOfOverDay, this.isAllDay());
+                WeekViewEvent eventMore = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), overDay, endOfOverDay, this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(),this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(),this.isAllDay());
                 eventMore.setColor(this.getColor());
                 events.add(eventMore);
 
@@ -336,7 +338,8 @@ public class WeekViewEvent {
             Calendar startTime = (Calendar) this.getEndTime().clone();
             startTime.set(Calendar.HOUR_OF_DAY, 0);
             startTime.set(Calendar.MINUTE, 0);
-            WeekViewEvent event2 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(), this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(), this.isAllDay());
+//            WeekViewEvent event2 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), startTime, this.getEndTime(), this.isAllDay());
+            WeekViewEvent event2 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), startTime, this.getEndTime(), this.getmPin(), this.getmSupplier(), this.getmReference(), this.getmBookedBy(), this.getmAdditionalInfo(),this.getAllDayValueOne(), this.getAllDayValueTwo(), this.getColor(), this.isImaageAvailable, this.getObjectList(), this.getResources(),this.isAllDay());
             event2.setColor(this.getColor());
             events.add(event2);
         } else {
