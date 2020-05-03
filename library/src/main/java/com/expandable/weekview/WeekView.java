@@ -958,7 +958,9 @@ public class WeekView extends View {
                     }
                 }
             }
-            String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
+            if((event.getAllDayValueOne() != null && !event.getAllDayValueOne().equals("0")) && event.getAllDayValueTwo() != null && !event.getAllDayValueTwo().equals("0")) {
+                String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
+            }
             String sourceString = st + "&nbsp";
             bob.append(Html.fromHtml(sourceString));
             if (event.getResources() != null && !event.getResources().isEmpty()) {
