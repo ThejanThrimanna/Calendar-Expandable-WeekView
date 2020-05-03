@@ -895,7 +895,7 @@ public class WeekView extends View {
                     bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_image), 0);
             }
         } else {
-            bob.append(event.getTime() + "  " + event.getActorType());
+            bob.append(event.getTime() + "  " + event.getActorType() + "\n");
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
                     case Constants.PIN: {
