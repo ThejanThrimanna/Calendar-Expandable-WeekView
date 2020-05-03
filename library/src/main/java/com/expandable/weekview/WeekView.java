@@ -887,7 +887,7 @@ public class WeekView extends View {
         if (event.ismAllDay()) {
             if (event.ismIsNotification()) {
                 String time = "<font color=#000000>" + event.getTime() + "</font>";
-                bob.append(time + "  " + event.getActorType());
+                bob.append(Html.fromHtml(time + "  " + event.getActorType()));
             } else {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
                 String sourceString = st + "&nbsp";
@@ -898,7 +898,7 @@ public class WeekView extends View {
         } else {
             String time = "<font color=#000000>" + event.getTime() + "</font>";
 
-            bob.append(time + "  " + event.getActorType() + "\n\n");
+            bob.append(Html.fromHtml(time + "  " + event.getActorType()) + "\n");
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
                     case Constants.PIN: {
