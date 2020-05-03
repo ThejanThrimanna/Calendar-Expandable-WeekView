@@ -886,7 +886,8 @@ public class WeekView extends View {
         SpannableStringBuilder bob = new SpannableStringBuilder();
         if (event.ismAllDay()) {
             if (event.ismIsNotification()) {
-                bob.append(event.getTime() + "  " + event.getActorType());
+                String time = "<font color=#000000>" + event.getTime() + "</font>";
+                bob.append(time + "  " + event.getActorType());
             } else {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
                 String sourceString = st + "&nbsp";
@@ -895,7 +896,9 @@ public class WeekView extends View {
                     bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_image), 0);
             }
         } else {
-            bob.append(event.getTime() + "  " + event.getActorType() + "\n");
+            String time = "<font color=#000000>" + event.getTime() + "</font>";
+
+            bob.append(time + "  " + event.getActorType() + "\n\n");
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
                     case Constants.PIN: {
@@ -958,7 +961,7 @@ public class WeekView extends View {
                     }
                 }
             }
-            if((event.getAllDayValueOne() != null && !event.getAllDayValueOne().equals("0")) && event.getAllDayValueTwo() != null && !event.getAllDayValueTwo().equals("0")) {
+            if ((event.getAllDayValueOne() != null && !event.getAllDayValueOne().equals("0")) && event.getAllDayValueTwo() != null && !event.getAllDayValueTwo().equals("0")) {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
                 String sourceString = st + "&nbsp";
                 bob.append(Html.fromHtml(sourceString));
