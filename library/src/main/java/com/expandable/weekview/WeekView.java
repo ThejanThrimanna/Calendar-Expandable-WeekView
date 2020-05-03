@@ -885,12 +885,17 @@ public class WeekView extends View {
         // Prepare the name of the event.
         SpannableStringBuilder bob = new SpannableStringBuilder();
         if (event.ismAllDay()) {
-            String st = "<b>" + event.getAllDayValueOne() + "</b>" + "/" + event.getAllDayValueTwo();
-            String sourceString = st + "&nbsp";
-            bob.append(Html.fromHtml(sourceString));
-            if (event.isImaageAvailable())
-                bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_image), 0);
+            if (event.ismIsNotification()) {
+                bob.append(event.getTime() + "  " + event.getActorType());
+            } else {
+                String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
+                String sourceString = st + "&nbsp";
+                bob.append(Html.fromHtml(sourceString));
+                if (event.isImaageAvailable())
+                    bob.append(" ", new ImageSpan(getRootView().getContext(), R.drawable.ic_image), 0);
+            }
         } else {
+            bob.append(event.getTime() + "  " + event.getActorType());
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
                     case Constants.PIN: {
@@ -953,7 +958,7 @@ public class WeekView extends View {
                     }
                 }
             }
-            String st = "<b>" + event.getAllDayValueOne() + "</b>" + "/" + event.getAllDayValueTwo();
+            String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
             String sourceString = st + "&nbsp";
             bob.append(Html.fromHtml(sourceString));
             if (event.getResources() != null && !event.getResources().isEmpty()) {
