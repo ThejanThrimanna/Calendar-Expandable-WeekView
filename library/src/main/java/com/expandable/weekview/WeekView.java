@@ -898,7 +898,7 @@ public class WeekView extends View {
         } else {
             String time = "<font color=#000000>" + event.getTime() + "</font>";
 
-            bob.append(Html.fromHtml(time + "   " + event.getActorType()));
+            bob.append(Html.fromHtml(time + "&nbsp" + "<b>" + event.getActorType() + "</b>"));
             bob.append("\n");
             for (int x = 0; x < order.size(); x++) {
                 switch (order.get(x).getId()) {
