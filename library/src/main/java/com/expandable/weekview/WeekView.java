@@ -887,7 +887,7 @@ public class WeekView extends View {
         if (event.ismAllDay()) {
             if (event.ismIsNotification()) {
                 String time = "<font color=#000000>" + event.getTime() + "</font>";
-                bob.append(Html.fromHtml(time + "   " + event.getActorType()));
+                bob.append(Html.fromHtml(time + "&nbsp" + "<b>" + event.getActorType() + "</b>"));
             } else {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
                 String sourceString = st + "&nbsp";
