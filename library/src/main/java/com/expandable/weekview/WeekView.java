@@ -540,7 +540,7 @@ public class WeekView extends View {
         canvas.drawRect(0, mHeaderHeight + mHeaderRowPadding * 2, mHeaderColumnWidth, getHeight(), mHeaderColumnBackgroundPaint);
 
         // Clip to paint in left column only.
-        canvas.clipRect(0, mHeaderHeight + mHeaderRowPadding * 2, mHeaderColumnWidth, getHeight(), Region.Op.DIFFERENCE);
+        canvas.clipRect(0, mHeaderHeight + mHeaderRowPadding * 2, mHeaderColumnWidth, getHeight(), Region.Op.REPLACE);
 
         for (int i = 0; i < 24; i++) {
             float top = mHeaderHeight + mHeaderRowPadding * 2 + mCurrentOrigin.y + mHourHeight * i + mHeaderMarginBottom;
@@ -636,7 +636,7 @@ public class WeekView extends View {
         }
 
         // Clip to paint events only.
-        canvas.clipRect(mHeaderColumnWidth, mHeaderHeight + mHeaderRowPadding * 2 + mHeaderMarginBottom + mTimeTextHeight / 2, getWidth(), getHeight(), Region.Op.DIFFERENCE);
+        canvas.clipRect(mHeaderColumnWidth, mHeaderHeight + mHeaderRowPadding * 2 + mHeaderMarginBottom + mTimeTextHeight / 2, getWidth(), getHeight(), Region.Op.REPLACE);
 
         // Iterate through each day.
         Calendar oldFirstVisibleDay = mFirstVisibleDay;
@@ -721,11 +721,11 @@ public class WeekView extends View {
         }
 
         // Hide everything in the first cell (top left corner).
-        canvas.clipRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2, Region.Op.DIFFERENCE);
+        canvas.clipRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2, Region.Op.REPLACE);
         canvas.drawRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2, mHeaderBackgroundPaint);
 
         // Clip to paint header row only.
-        canvas.clipRect(mHeaderColumnWidth, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2, Region.Op.DIFFERENCE);
+        canvas.clipRect(mHeaderColumnWidth, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2, Region.Op.REPLACE);
 
         // Draw the header background.
         canvas.drawRect(0, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2, mHeaderBackgroundPaint);
@@ -901,68 +901,15 @@ public class WeekView extends View {
 
             bob.append(Html.fromHtml(time + "&nbsp" + "<b>" + event.getActorType() + "</b>"));
             bob.append("\n");
-            for (int x = 0; x < order.size(); x++) {
-                switch (order.get(x).getId()) {
-                    case Constants.PIN: {
-                        String sourceString = event.getmPin();
-                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                            if (order.get(x).getBold()) {
-                                sourceString = "<b>" + sourceString + "</b> ";
-                            }
-                            bob.append(Html.fromHtml(sourceString));
-                            bob.append("\n");
-                        }
-                        break;
-                    }
-                    case Constants.SUPPLIER: {
-                        String sourceString = event.getmSupplier();
-                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                            if (order.get(x).getBold()) {
-                                sourceString = "<b>" + sourceString + "</b> ";
-                            }
-                            bob.append(Html.fromHtml(sourceString));
-                            bob.append("\n");
-                        }
-                        break;
-                    }
+            /*for (int x = 0; x < order.size(); x++) {
 
-                    case Constants.REFERENCE: {
-                        String sourceString = event.getmReference();
-                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                            if (order.get(x).getBold()) {
-                                sourceString = "<b>" + sourceString + "</b> ";
-                            }
-                            bob.append(Html.fromHtml(sourceString));
-                            bob.append("\n");
-                        }
-                        break;
-                    }
+            }*/
+            createTitle(event, order.get(0),bob);
+            createTitle(event, order.get(1),bob);
+            createTitle(event, order.get(2),bob);
+            createTitle(event, order.get(3),bob);
+            createTitle(event, order.get(4),bob);
 
-                    case Constants.BOOKED_BY: {
-                        String sourceString = event.getmBookedBy();
-                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                            if (order.get(x).getBold()) {
-                                sourceString = "<b>" + sourceString + "</b> ";
-                            }
-                            bob.append(Html.fromHtml(sourceString));
-                            bob.append("\n");
-                        }
-                        break;
-                    }
-
-                    case Constants.ADDITIONAL_INFO: {
-                        String sourceString = event.getmAdditionalInfo();
-                        if (order.get(x).getShow() && !sourceString.isEmpty()) {
-                            if (order.get(x).getBold()) {
-                                sourceString = "<b>" + sourceString + "</b> ";
-                            }
-                            bob.append(Html.fromHtml(sourceString));
-                            bob.append("\n");
-                        }
-                        break;
-                    }
-                }
-            }
             if ((event.getAllDayValueOne() != null && !event.getAllDayValueOne().equals("0")) && event.getAllDayValueTwo() != null && !event.getAllDayValueTwo().equals("0")) {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
                 String sourceString = st + "&nbsp";
@@ -1027,6 +974,70 @@ public class WeekView extends View {
             textLayout.draw(canvas);
             canvas.restore();
         }
+    }
+
+    private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob){
+        switch (order.getId()) {
+            case Constants.PIN: {
+                String sourceString = event.getmPin();
+                if (order.getShow() && !sourceString.isEmpty()) {
+                    if (order.getBold()) {
+                        sourceString = "<b>" + sourceString + "</b> ";
+                    }
+                    bob.append(Html.fromHtml(sourceString));
+                    bob.append("\n");
+                }
+                break;
+            }
+            case Constants.SUPPLIER: {
+                String sourceString = event.getmSupplier();
+                if (order.getShow() && !sourceString.isEmpty()) {
+                    if (order.getBold()) {
+                        sourceString = "<b>" + sourceString + "</b> ";
+                    }
+                    bob.append(Html.fromHtml(sourceString));
+                    bob.append("\n");
+                }
+                break;
+            }
+
+            case Constants.REFERENCE: {
+                String sourceString = event.getmReference();
+                if (order.getShow() && !sourceString.isEmpty()) {
+                    if (order.getBold()) {
+                        sourceString = "<b>" + sourceString + "</b> ";
+                    }
+                    bob.append(Html.fromHtml(sourceString));
+                    bob.append("\n");
+                }
+                break;
+            }
+
+            case Constants.BOOKED_BY: {
+                String sourceString = event.getmBookedBy();
+                if (order.getShow() && !sourceString.isEmpty()) {
+                    if (order.getBold()) {
+                        sourceString = "<b>" + sourceString + "</b> ";
+                    }
+                    bob.append(Html.fromHtml(sourceString));
+                    bob.append("\n");
+                }
+                break;
+            }
+
+            case Constants.ADDITIONAL_INFO: {
+                String sourceString = event.getmAdditionalInfo();
+                if (order.getShow() && !sourceString.isEmpty()) {
+                    if (order.getBold()) {
+                        sourceString = "<b>" + sourceString + "</b> ";
+                    }
+                    bob.append(Html.fromHtml(sourceString));
+                    bob.append("\n");
+                }
+                break;
+            }
+        }
+        return bob;
     }
 
 
