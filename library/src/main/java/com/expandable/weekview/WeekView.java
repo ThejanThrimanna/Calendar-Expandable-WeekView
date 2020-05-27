@@ -539,8 +539,9 @@ public class WeekView extends View {
         // Draw the background color for the header column.
         canvas.save();
         canvas.drawRect(0, mHeaderHeight + mHeaderRowPadding * 2, mHeaderColumnWidth, getHeight(), mHeaderColumnBackgroundPaint);
-
+        canvas.restore();
         // Clip to paint in left column only.
+        canvas.save();
         canvas.clipRect(0, mHeaderHeight + mHeaderRowPadding * 2, mHeaderColumnWidth, getHeight());
 
         for (int i = 0; i < 24; i++) {
@@ -548,7 +549,7 @@ public class WeekView extends View {
 
             // Draw the text if its y position is not outside of the visible area. The pivot point of the text is the point at the bottom-right corner.
             String time = getDateTimeInterpreter().interpretTime(i);
-            if(time.equals("0 PM")) time = "12 PM";
+            if (time.equals("0 PM")) time = "12 PM";
             if (time == null)
                 throw new IllegalStateException("A DateTimeInterpreter must not return null time");
             if (top < getHeight())
@@ -725,16 +726,16 @@ public class WeekView extends View {
 
         // Hide everything in the first cell (top left corner).
         canvas.save();
-        canvas.clipRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2, Region.Op.REPLACE);
+        canvas.clipRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2);
         canvas.drawRect(0, 0, mTimeTextWidth + mHeaderColumnPadding * 2, mHeaderHeight + mHeaderRowPadding * 2, mHeaderBackgroundPaint);
         canvas.restore();
         // Clip to paint header row only.
         canvas.save();
-        canvas.clipRect(mHeaderColumnWidth, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2);
+        canvas.clipRect(mHeaderColumnWidth, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2, Region.Op.REPLACE);
 
         // Draw the header background.
         canvas.drawRect(0, 0, getWidth(), mHeaderHeight + mHeaderRowPadding * 2, mHeaderBackgroundPaint);
-        canvas.restore();
+
         // Draw the header row texts.
         startPixel = startFromPixel;
         for (int dayNumber = leftDaysWithGaps + 1; dayNumber <= leftDaysWithGaps + mNumberOfVisibleDays + 1; dayNumber++) {
@@ -751,7 +752,7 @@ public class WeekView extends View {
             drawAllDayEvents(day, startPixel, canvas);
             startPixel += mWidthPerDay + mColumnGap;
         }
-
+        canvas.restore();
     }
 
     /**
@@ -908,11 +909,11 @@ public class WeekView extends View {
             bob.append("\n");
             /*for (int x = 0; x < order.size(); x++) {
             }*/
-            createTitle(event, order.get(0),bob);
-            createTitle(event, order.get(1),bob);
-            createTitle(event, order.get(2),bob);
-            createTitle(event, order.get(3),bob);
-            createTitle(event, order.get(4),bob);
+            createTitle(event, order.get(0), bob);
+            createTitle(event, order.get(1), bob);
+            createTitle(event, order.get(2), bob);
+            createTitle(event, order.get(3), bob);
+            createTitle(event, order.get(4), bob);
 
             if ((event.getAllDayValueOne() != null && !event.getAllDayValueOne().equals("0")) && event.getAllDayValueTwo() != null && !event.getAllDayValueTwo().equals("0")) {
                 String st = event.getAllDayValueOne() + "/" + event.getAllDayValueTwo();
@@ -980,7 +981,7 @@ public class WeekView extends View {
         }
     }
 
-    private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob){
+    private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob) {
         switch (order.getId()) {
             case Constants.PIN: {
                 String sourceString = event.getmPin();
