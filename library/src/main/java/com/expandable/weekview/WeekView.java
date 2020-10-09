@@ -897,8 +897,8 @@ public class WeekView extends View {
 	 *                     of its portion outside of the visible area.
 	 */
 	private void drawEventTitle(WeekViewEvent event, RectF rect, Canvas canvas, float originalTop, float originalLeft) {
-		if (rect.right - rect.left - mEventPadding * 2 < 0) return;
-		if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;
+		/*if (rect.right - rect.left - mEventPadding * 2 < 0) return;
+		if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;*/
 
 		// Prepare the name of the event.
 		SpannableStringBuilder bob = new SpannableStringBuilder();
@@ -962,8 +962,8 @@ public class WeekView extends View {
 			}
 		}
 
-		int availableHeight = (int) (rect.bottom - originalTop - mEventPadding);
-		int availableWidth = (int) (rect.right - originalLeft - mEventPadding);
+		int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
+		int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
 
 		// Get text dimensions.
 		StaticLayout textLayout = new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
