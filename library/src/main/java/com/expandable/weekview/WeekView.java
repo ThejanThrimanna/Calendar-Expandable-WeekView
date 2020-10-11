@@ -829,7 +829,7 @@ public class WeekView extends View {
 							right > mHeaderColumnWidth &&
 							bottom > mHeaderHeight + mHeaderRowPadding * 2 + mTimeTextHeight / 2 + mHeaderMarginBottom
 					) {
-						mEventRects.get(i).rectF = new RectF(left, top, right, bottom);
+						mEventRects.get(i).rectF = new RectF(left, top, 200, bottom);
 						mEventBackgroundPaint.setColor(mEventRects.get(i).event.getColor() == 0 ? mDefaultEventColor : mEventRects.get(i).event.getColor());
 						canvas.drawRoundRect(mEventRects.get(i).rectF, mEventCornerRadius, mEventCornerRadius, mEventBackgroundPaint);
 						drawEventTitle(mEventRects.get(i).event, mEventRects.get(i).rectF, canvas, top, left);
@@ -897,8 +897,8 @@ public class WeekView extends View {
 	 *                     of its portion outside of the visible area.
 	 */
 	private void drawEventTitle(WeekViewEvent event, RectF rect, Canvas canvas, float originalTop, float originalLeft) {
-		/*if (rect.right - rect.left - mEventPadding * 2 < 0) return;
-		if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;*/
+		if (rect.right - rect.left - mEventPadding * 2 < 0) return;
+		if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;
 
 		// Prepare the name of the event.
 		SpannableStringBuilder bob = new SpannableStringBuilder();
