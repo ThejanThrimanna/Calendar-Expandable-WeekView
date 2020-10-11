@@ -985,7 +985,7 @@ public class WeekView extends View {
 
 			// Draw text.
 			canvas.save();
-			canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
+			canvas.translate(200, originalTop + mEventPadding);
 			textLayout.draw(canvas);
 			canvas.restore();
 		}
