@@ -932,7 +932,7 @@ public class WeekView extends View {
 				bob.append(Html.fromHtml(sourceString));
 			}
 
-			if (event.getResources() != null && !event.getResources().isEmpty()) {
+			/*if (event.getResources() != null && !event.getResources().isEmpty()) {
 				bob.append(Html.fromHtml("<br>"));
 				for (String res : event.getResources()) {
 					switch (res) {
@@ -959,7 +959,7 @@ public class WeekView extends View {
 					}
 
 				}
-			}
+			}*/
 		}
 
 		int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
