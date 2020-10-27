@@ -896,12 +896,12 @@ public class WeekView extends View {
      * @param originalLeft The original left position of the rectangle. The rectangle may have some
      *                     of its portion outside of the visible area.
      */
-    private void drawEventTitle(WeekViewEvent event, RectF rect, Canvas canvas, float originalTop, float originalLeft) {
+    private void drawEventTitle(WeekViewEvent event, final RectF rect, final Canvas canvas, final float originalTop, final float originalLeft) {
         if (rect.right - rect.left - mEventPadding * 2 < 0) return;
         if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;
 
         // Prepare the name of the event.
-        SpannableStringBuilder bob = new SpannableStringBuilder();
+        final SpannableStringBuilder bob = new SpannableStringBuilder();
         if (event.ismAllDay()) {
             if (event.ismIsNotification()) {
                 String time = "<font color=#000000>" + event.getTime() + "</font>";
@@ -933,63 +933,37 @@ public class WeekView extends View {
             }
             bob.append(Html.fromHtml("<br>"));
             bob.append(event.getResources());
-			/*if (event.getResources() != null && !event.getResources().isEmpty()) {
-				bob.append(Html.fromHtml("<br>"));
-				for (String res : event.getResources()) {
-					switch (res) {
-						case "TOOLS":
-							bob.append(" ", new ImageSpan(getRootView().getContext(), com.expandable.weekview.R.drawable.ic_tools_lb), 0);
-							bob.append("  ");
-							break;
-						case "MANPOWER":
-							bob.append(" ", new ImageSpan(getRootView().getContext(), com.expandable.weekview.R.drawable.ic_people_lb), 0);
-							bob.append("  ");
-							break;
-						case "TRUCK":
-							bob.append(" ", new ImageSpan(getRootView().getContext(), com.expandable.weekview.R.drawable.ic_truck_lb), 0);
-							bob.append("  ");
-							break;
-						case "CRANE":
-							bob.append(" ", new ImageSpan(getRootView().getContext(), com.expandable.weekview.R.drawable.ic_crane_lb), 0);
-							bob.append("  ");
-							break;
-						case "FORKLIFT":
-							bob.append(" ", new ImageSpan(getRootView().getContext(), com.expandable.weekview.R.drawable.ic_fork_lb), 0);
-							bob.append("  ");
-							break;
-					}
-
-				}
-			}*/
         }
 
-        int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
-        int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
+        final int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
+        final int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
 
         // Get text dimensions.
-        StaticLayout textLayout = new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+		final StaticLayout[] textLayout = {new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)};
 
-        int lineHeight = textLayout.getHeight() / textLayout.getLineCount();
+        final int lineHeight = textLayout[0].getHeight() / textLayout[0].getLineCount();
 
-        if (availableHeight >= lineHeight) {
-            // Calculate available number of line counts.
-            int availableLineCount = availableHeight / lineHeight;
-            do {
-                // Ellipsize text to fit into event rect.
-                textLayout = new StaticLayout(TextUtils.ellipsize(bob, mEventTextPaint, availableLineCount * availableWidth, TextUtils.TruncateAt.END), mEventTextPaint, (int) (rect.right - originalLeft - mEventPadding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+		new Thread( new Runnable() { @Override public void run() {
+			if (availableHeight >= lineHeight) {
+				// Calculate available number of line counts.
+				int availableLineCount = availableHeight / lineHeight;
+				do {
+					// Ellipsize text to fit into event rect.
+					textLayout[0] = new StaticLayout(TextUtils.ellipsize(bob, mEventTextPaint, availableLineCount * availableWidth, TextUtils.TruncateAt.END), mEventTextPaint, (int) (rect.right - originalLeft - mEventPadding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
 
-                // Reduce line count.
-                availableLineCount--;
+					// Reduce line count.
+					availableLineCount--;
 
-                // Repeat until text is short enough.
-            } while (textLayout.getHeight() > availableHeight);
+					// Repeat until text is short enough.
+				} while (textLayout[0].getHeight() > availableHeight);
 
-            // Draw text.
-            canvas.save();
-            canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
-            textLayout.draw(canvas);
-            canvas.restore();
-        }
+				// Draw text.
+				canvas.save();
+				canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
+				textLayout[0].draw(canvas);
+				canvas.restore();
+			}
+		} } ).start();
     }
 
     private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob) {
