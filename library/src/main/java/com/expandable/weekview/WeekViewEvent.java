@@ -1,10 +1,12 @@
 package com.expandable.weekview;
 
+import android.text.SpannableStringBuilder;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.expandable.weekview.WeekViewUtil.*;
+import static com.expandable.weekview.WeekViewUtil.isSameDay;
 
 /**
  * Created by Thejan_Thrimanna on 4/18/2020.
@@ -29,7 +31,7 @@ public class WeekViewEvent {
     private boolean mIsNotification;
     private boolean isImaageAvailable;
     private List<Object> objectList;
-    private List<String> resources;
+    private SpannableStringBuilder resources;
 
     public WeekViewEvent() {
 
@@ -93,7 +95,7 @@ public class WeekViewEvent {
     public WeekViewEvent(long id, String name, String location, Calendar startTime, Calendar endTime, String pin,
                          String supplier, String reference, String bookingBy,
                          String additionalInfo, String allDayValueOne, String allDayValueTwo, int color,
-                         Boolean isImageAvailable, List<Object> objectList, List<String> resources, String actorType, String time, Boolean mIsNotification ,boolean allDay) {
+                         Boolean isImageAvailable, List<Object> objectList, SpannableStringBuilder resources, String actorType, String time, Boolean mIsNotification ,boolean allDay) {
         this.mId = id;
         this.mName = name;
         this.mLocation = location;
@@ -282,11 +284,11 @@ public class WeekViewEvent {
         this.objectList = objectList;
     }
 
-    public List<String> getResources() {
+    public SpannableStringBuilder getResources() {
         return resources;
     }
 
-    public void setResources(List<String> resources) {
+    public void setResources(SpannableStringBuilder resources) {
         this.resources = resources;
     }
 
