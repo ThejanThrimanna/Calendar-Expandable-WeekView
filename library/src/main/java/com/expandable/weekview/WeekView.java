@@ -958,12 +958,14 @@ public class WeekView extends View {
 				} while (textLayout[0].getHeight() > availableHeight);
 
 				// Draw text.
-				canvas.save();
-				canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
-				textLayout[0].draw(canvas);
-				canvas.restore();
+
 			}
 		} } ).start();
+
+		canvas.save();
+		canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
+		textLayout[0].draw(canvas);
+		canvas.restore();
     }
 
     private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob) {
