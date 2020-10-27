@@ -896,12 +896,12 @@ public class WeekView extends View {
      * @param originalLeft The original left position of the rectangle. The rectangle may have some
      *                     of its portion outside of the visible area.
      */
-    private void drawEventTitle(WeekViewEvent event, final RectF rect, final Canvas canvas, final float originalTop, final float originalLeft) {
+    private void drawEventTitle(WeekViewEvent event, RectF rect, Canvas canvas, float originalTop, float originalLeft) {
         if (rect.right - rect.left - mEventPadding * 2 < 0) return;
         if (rect.bottom - rect.top - mEventPadding * 2 < 0) return;
 
         // Prepare the name of the event.
-        final SpannableStringBuilder bob = new SpannableStringBuilder();
+        SpannableStringBuilder bob = new SpannableStringBuilder();
         if (event.ismAllDay()) {
             if (event.ismIsNotification()) {
                 String time = "<font color=#000000>" + event.getTime() + "</font>";
@@ -935,37 +935,34 @@ public class WeekView extends View {
             bob.append(event.getResources());
         }
 
-        final int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
-        final int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
+        int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
+        int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
 
         // Get text dimensions.
-		final StaticLayout[] textLayout = {new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)};
+        StaticLayout textLayout = new StaticLayout(bob, mEventTextPaint, availableWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
 
-        final int lineHeight = textLayout[0].getHeight() / textLayout[0].getLineCount();
+        int lineHeight = textLayout.getHeight() / textLayout.getLineCount();
 
-		new Thread( new Runnable() { @Override public void run() {
-			if (availableHeight >= lineHeight) {
-				// Calculate available number of line counts.
-				int availableLineCount = availableHeight / lineHeight;
-				do {
-					// Ellipsize text to fit into event rect.
-					textLayout[0] = new StaticLayout(TextUtils.ellipsize(bob, mEventTextPaint, availableLineCount * availableWidth, TextUtils.TruncateAt.END), mEventTextPaint, (int) (rect.right - originalLeft - mEventPadding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
 
-					// Reduce line count.
-					availableLineCount--;
+        if (availableHeight >= lineHeight) {
+            // Calculate available number of line counts.
+            int availableLineCount = availableHeight / lineHeight;
+            do {
+                // Ellipsize text to fit into event rect.
+                textLayout = new StaticLayout(TextUtils.ellipsize(bob, mEventTextPaint, availableLineCount * availableWidth, TextUtils.TruncateAt.END), mEventTextPaint, (int) (rect.right - originalLeft - mEventPadding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
 
-					// Repeat until text is short enough.
-				} while (textLayout[0].getHeight() > availableHeight);
+                // Reduce line count.
+                availableLineCount--;
 
-				// Draw text.
+                // Repeat until text is short enough.
+            } while (textLayout.getHeight() > availableHeight);
 
-			}
-		} } ).start();
-
-		canvas.save();
-		canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
-		textLayout[0].draw(canvas);
-		canvas.restore();
+            // Draw text.
+            canvas.save();
+            canvas.translate(originalLeft + mEventPadding, originalTop + mEventPadding);
+            textLayout.draw(canvas);
+            canvas.restore();
+        }
     }
 
     private SpannableStringBuilder createTitle(WeekViewEvent event, EventStringObject order, SpannableStringBuilder bob) {
