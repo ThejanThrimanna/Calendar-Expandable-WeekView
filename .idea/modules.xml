@@ -3,9 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Calendar-Expandable-WeekView.iml" filepath="$PROJECT_DIR$/.idea/Calendar-Expandable-WeekView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" filepath="$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" group="CalendarView-ExpandableWeekView" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="CalendarView-ExpandableWeekView/app" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" group="CalendarView-ExpandableWeekView/library" />
+      <module fileurl="file://$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" filepath="$PROJECT_DIR$/CalendarView-ExpandableWeekView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CalendarView-ExpandableWeekView.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/CalendarView-ExpandableWeekView.library.unitTest.iml" />
     </modules>
   </component>
 </project>
