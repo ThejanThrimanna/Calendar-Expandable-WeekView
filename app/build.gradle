@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 33
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
         applicationId "com.bts.calendarview_expandableweekview"
