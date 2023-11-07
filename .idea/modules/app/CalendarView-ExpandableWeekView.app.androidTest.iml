@@ -62,7 +62,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/7d2266436ee4a326561d9274788e5bda/transformed/jetified-kotlin-stdlib-common-1.7.10.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/668798d509f124ed54075ddf4f915d94/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/Android/sdk/platforms/android-33/android.jar</arg>
-                <arg>$USER_HOME$/Android/sdk/build-tools/32.0.0/core-lambda-stubs.jar</arg>
+                <arg>$USER_HOME$/Android/sdk/build-tools/33.0.0/core-lambda-stubs.jar</arg>
               </args>
             </stringArg>
             <stringArg name="destination" arg="$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debugAndroidTest" />
