@@ -5,12 +5,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 32
     buildToolsVersion '33.0.0'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 33
+        targetSdkVersion 32
     }
 }
 
